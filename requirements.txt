@@ -1,0 +1,8 @@
+numpy
+pandas
+loguru
+requests
+lxml
+matplotlib>=3.7.5
+plotly>=5.22.0
+kaleido==0.1.0.post1
