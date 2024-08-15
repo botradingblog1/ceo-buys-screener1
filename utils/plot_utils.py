@@ -10,10 +10,10 @@ def plot_candidates(candidates_df):
     # Plotting
     plt.figure(figsize=(12, 8))
     scatter = plt.scatter(candidates_df['price_drop'], candidates_df['ownership_change'],
-                          s=candidates_df['ownership_change'] * 50, alpha=0.6, edgecolors="w", linewidth=2)
+                          s=candidates_df['ownership_change'] * 100, alpha=0.6, edgecolors="w", linewidth=2)
 
     for i, row in candidates_df.iterrows():
-        plt.text(row['price_drop'], row['ownership_change'], row['symbol'], fontsize=10, ha='right')
+        plt.text(row['price_drop'], row['ownership_change'], row['symbol'], fontsize=12, ha='right')
 
     plt.title('Top 10 Stocks by CEO Ownership Change and Price Drop')
     plt.xlabel('Price Drop (%)')

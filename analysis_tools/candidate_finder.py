@@ -15,9 +15,9 @@ class CandidateFinder:
         filtered_prices_dict = {}
         for symbol, df in prices_dict.items():
             if not df.empty:
-                first_price = df.iloc[0]['close']
+                high_price = df['high'].iloc[0:-1].max()
                 last_price = df.iloc[-1]['close']
-                price_drop = ((first_price - last_price) / first_price) * 100
+                price_drop = - ((high_price - last_price) / high_price) * 100
                 df['price_drop'] = price_drop
                 if price_drop <= price_drop_percent:
                     filtered_prices_dict[symbol] = df
@@ -94,6 +94,11 @@ class CandidateFinder:
             'ownership_change': 'mean',
             'price_drop': 'mean'
         }).reset_index()
+        candidates_df['ownership_change'] = round(candidates_df['ownership_change'], 2)
+        candidates_df['price_drop'] = round(candidates_df['price_drop'], 2)
+
+        # Sort by price drop
+        candidates_df.sort_values(by="price_drop", ascending=True, inplace=True)
 
         # Store results
         os.makedirs(RESULTS_DIR, exist_ok=True)

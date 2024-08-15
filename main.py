@@ -15,3 +15,4 @@ if __name__ == "__main__":
     if candidates_df is not None and len(candidates_df) > 0:
         plot_candidates(candidates_df)
 
+    print("All done!")
